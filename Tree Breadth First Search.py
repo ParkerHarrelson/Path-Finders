@@ -2,8 +2,8 @@ from TreeNode import TreeNode
 from collections import deque
 
 def get_node_input(parent):
-        value = int(input("\nEnter value for new node: "))
-        return TreeNode(value, parent)
+    value = int(input("\nEnter value for new node: "))
+    return TreeNode(value, parent)
 
 def get_children_input(root_node):
     queue = deque([root_node])
@@ -18,29 +18,24 @@ def get_children_input(root_node):
             parent_node.add_child(child_node)
             queue.append(child_node)
 
-
 def find_goal_path(goal_node, root):
-    if root.value == goal_node:
-        return root
-    else:
-        frontier = [root]
-        reached = [root]
+    frontier = [root]
+    reached = set([root.value])
 
-        while len(frontier) > 0:
-            cur_node = frontier.pop()
-            node_children = cur_node.children_nodes
+    while frontier:
+        cur_node = frontier.pop()
+        node_children = cur_node.children_nodes
 
-            for node in node_children:
-                val = node.value
-                if val == goal_node:
-                    return node
-                
-                if val not in reached:
-                    reached.append(val)
-                    frontier.append(node)
+        for node in node_children:
+            child_value = node.value
+            if child_value == goal_node:
+                return node
+            
+            if child_value not in reached:
+                reached.add(child_value)
+                frontier.append(node)
             
     return None
-
 
 def print_ancestry(node):
     if not node:
@@ -53,9 +48,7 @@ def print_ancestry(node):
     ancestry_str = " -> ".join(lineage[::-1])
     print(ancestry_str)
 
-
 def main():
-
     print("Enter the root node:")
     root = get_node_input(None)
     get_children_input(root)
@@ -63,7 +56,6 @@ def main():
     goal_node = int(input("\nEnter goal node value: "))
     print("\nGoal Path: ")
     print_ancestry(find_goal_path(goal_node, root))
-
 
 if __name__ == "__main__":
     main()
