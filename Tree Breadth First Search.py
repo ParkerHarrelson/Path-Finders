@@ -1,4 +1,5 @@
-from TreeNode import TreeNode
+from TreeBuilder import TreeNode
+from TreeBuilder import TreeBuilder
 from collections import deque
 
 def get_node_input(parent):
@@ -49,13 +50,28 @@ def print_ancestry(node):
     print(ancestry_str)
 
 def main():
-    print("Enter the root node:")
-    root = get_node_input(None)
-    get_children_input(root)
-    
-    goal_node = int(input("\nEnter goal node value: "))
-    print("\nGoal Path: ")
-    print_ancestry(find_goal_path(goal_node, root))
+
+    decision = int(input("Input 0 to design tree or 1 for random tree generation: "))
+
+    if decision == 0:
+        print("\nEnter the root node:")
+        root = get_node_input(None)
+        get_children_input(root)
+        
+        goal_node = int(input("\nEnter goal node value: "))
+        print("\nGoal Path: ")
+        print_ancestry(find_goal_path(goal_node, root))
+    elif decision == 1:
+        depth = int(input("\nEnter depth for tree: "))
+        tree_builder = TreeBuilder(depth)
+
+        tree = tree_builder.build_tree()
+        root = tree[0]
+
+        goal_node = tree[1]
+        print("\nGoal Node to find: ", goal_node)
+        print_ancestry(find_goal_path(goal_node, root))
+        
 
 if __name__ == "__main__":
     main()
