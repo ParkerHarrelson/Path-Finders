@@ -8,7 +8,7 @@ def get_node_input(parent):
 def get_children_input(root_node):
     queue = deque([root_node])
     while queue:
-        print("\n" + "=" * 50)  # Adding a horizontal separator for clarity
+        print("\n" + "=" * 50)  
         parent_node = queue.popleft()
         num_children = int(input(f"\nHow many children does node {parent_node.value} have? "))
 
