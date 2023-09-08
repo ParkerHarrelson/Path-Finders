@@ -1,4 +1,4 @@
-from Nodes import TreeNode
+from TreeNode import TreeNode
 from collections import deque
 import random
 
@@ -12,7 +12,7 @@ class TreeBuilder:
         return random.randint(min, max)
 
     
-    def build_tree(self):
+    def build_random_tree(self):
         root = TreeNode(1, None)
         queue = deque([(root, 1)])
         current_value = 2
@@ -28,4 +28,4 @@ class TreeBuilder:
                     queue.append((child, node_depth + 1))
                     current_value += 1
                     
-        return [root, current_value - 1]
+        return root

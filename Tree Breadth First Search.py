@@ -1,5 +1,5 @@
-from Nodes import TreeNode
-from Problem_Builder import TreeBuilder
+from TreeNode import TreeNode
+from TreeBuilder import TreeBuilder
 from collections import deque
 
 def get_node_input(parent):
@@ -65,11 +65,9 @@ def main():
         depth = int(input("\nEnter depth for tree: "))
         tree_builder = TreeBuilder(depth)
 
-        tree = tree_builder.build_tree()
-        root = tree[0]
-
-        goal_node = tree[1]
-        print("\nGoal Node to find: ", goal_node)
+        root = tree_builder.build_random_tree()
+       
+        goal_node = int(input("\nEnter the goal node to find: "))
         print_ancestry(find_goal_path(goal_node, root))
         
 
