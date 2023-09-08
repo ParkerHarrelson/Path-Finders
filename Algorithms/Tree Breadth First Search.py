@@ -1,5 +1,5 @@
-from TreeBuilder import TreeNode
-from TreeBuilder import TreeBuilder
+from Nodes import TreeNode
+from Problem_Builder import TreeBuilder
 from collections import deque
 
 def get_node_input(parent):
